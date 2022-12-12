@@ -1,5 +1,5 @@
 -- main module file
-local module = require("plugin_name.module")
+local module = require("git_browse.module")
 
 local M = {}
 M.config = {
@@ -14,8 +14,11 @@ M.setup = function(args)
   M.config = vim.tbl_deep_extend("force", M.config, args or {})
 end
 
--- "hello" is a public method for the plugin
-M.hello = function()
+M.open_blame = function()
+  module.my_first_function()
+end
+
+M.browse = function()
   module.my_first_function()
 end
 
