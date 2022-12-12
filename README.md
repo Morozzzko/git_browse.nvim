@@ -30,15 +30,15 @@ Click on `Use this template`
 ```
 .
 ├── lua
-│   ├── plugin_name
+│   ├── git_browse
 │   │   └── module.lua
-│   └── plugin_name.lua
+│   └── git_browse.lua
 ├── Makefile
 ├── plugin
-│   └── plugin_name.lua
+│   └── git_browse.lua
 ├── README.md
 ├── tests
 │   ├── minimal_init.lua
-│   └── plugin_name
-│       └── plugin_name_spec.lua
+│   └── git_browse
+│       └── git_browse_spec.lua
 ```
