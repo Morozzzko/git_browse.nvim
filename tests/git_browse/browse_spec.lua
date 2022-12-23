@@ -1,12 +1,14 @@
 local plugin = require("git_browse")
 
 describe("browse", function()
-  it("works with default", function()
-    assert("my first function with param = Hello!", plugin.browse())
-  end)
-
-  it("works with custom var", function()
-    plugin.setup({ opt = "custom" })
-    assert("my first function with param = custom", plugin.browse())
+  describe("when current branch is pushed to upstream", function()
+    it("launches open with", function()
+      plugin.setup({ 
+        git_branch_command = function()
+          return "main:origin/main:origin/main:commit:*"
+        end
+      })
+      -- assert.are.same({ 'open', 'https://github.com/Morozzzko/git-browse-nvim/blob/main'}, plugin.browse())
+    end)
   end)
 end)
