@@ -16,11 +16,11 @@ M.config = {
     return shell_exec('git branch --format "%(refname:short):%(push:short):%(upstream:short):%(objecttype):%(HEAD)"')
   end,
   git_remote_get_url_command = function(remote_name)
-    return shell_exec('git remote get-url ' .. remote_name)
+    return shell_exec("git remote get-url " .. remote_name)
   end,
   git_repo_root_command = function()
-    return shell_exec('git rev-parse --show-toplevel')
-  end
+    return shell_exec("git rev-parse --show-toplevel")
+  end,
 }
 
 -- setup is the public method to setup your plugin
@@ -31,12 +31,8 @@ M.setup = function(args)
 end
 
 M.browse = function()
-  data = module.browse(
-    M.config.git_branch_command, 
-    M.config.git_remote_get_url_command,
-    M.config.git_repo_root_command
-  )
-  return os.execute(data.cmd .. ' ' .. data.url)
+  data = module.browse(M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command)
+  return os.execute(data.cmd .. " " .. data.url)
 end
 
 return M

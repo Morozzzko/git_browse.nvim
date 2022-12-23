@@ -8,7 +8,7 @@ M.parse_git_branch = function(raw_branch_data)
     push_location = parsed_branch_data[2],
     upstream = parsed_branch_data[3],
     type = parsed_branch_data[4],
-    current = (parsed_branch_data[5] == "*" and true or false)
+    current = (parsed_branch_data[5] == "*" and true or false),
   }
 end
 
@@ -24,7 +24,7 @@ M.current_branch_info = function(git_branch_command)
       break
     end
   end
-  
+
   return current_branch
 end
 
