@@ -13,7 +13,7 @@ M.parse_git_branch = function(raw_branch_data)
 end
 
 M.branch_name_to_open = function(current_branch_data)
-  _origin, path = current_branch.upstream:match('(%w+)/(.*)')
+  _origin, path = current_branch_data.upstream:match('(%w+)/(.*)')
 
   return path
 end
