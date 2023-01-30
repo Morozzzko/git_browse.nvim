@@ -71,23 +71,46 @@ describe("branch_name_to_open", function()
   end)
 end)
 
-describe("current_branch", function()
-  git_branch_command = function()
-    return [[
-main:origin/main:origin/main:commit:
-rebrand:origin/rebrand:origin/rebrand:commit:
-test-no-remote::origin/main:commit:*
-    ]]
-  end
+describe("current_branch_info", function()
+  describe("when current branch contains ORIG_HEAD", function()
+    git_branch_command = function()
+      return [[
+  main:origin/main:origin/main:commit:
+  rebrand:origin/rebrand:origin/rebrand:commit:
+  test-no-remote::origin/main:commit:*
+      ]]
+    end
 
-  it("returns current branch info", function()
-    current_branch_info = {
-      name = "test-no-remote",
-      upstream = "origin/main",
-      type = "commit",
-      push_location = "",
-      current = true,
-    }
-    assert.are.same(current_branch_info, git_helpers.current_branch_info(git_branch_command))
+    it("returns current branch info", function()
+      current_branch_info = {
+        name = "test-no-remote",
+        upstream = "origin/main",
+        type = "commit",
+        push_location = "",
+        current = true,
+      }
+      assert.are.same(current_branch_info, git_helpers.current_branch_info(git_branch_command))
+    end)
+  end)
+
+  describe("when current branch does not contain ORIG_HEAD", function()
+    git_branch_command = function()
+      return [[
+  test-no-remote:::commit:
+  main:origin/main:origin/main:commit:
+  rebrand:origin/rebrand:origin/rebrand:commit:
+      ]]
+    end
+
+    it("returns first branch which contains upstream", function()
+      current_branch_info = {
+        name = "main",
+        type = "commit",
+        push_location = "origin/main",
+        upstream = "origin/main",
+        current = false,
+      }
+      assert.are.same(current_branch_info, git_helpers.current_branch_info(git_branch_command))
+    end)
   end)
 end)
