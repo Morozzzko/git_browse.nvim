@@ -9,7 +9,7 @@ function location_from_current_buffer(git_repo_root_command)
   if buffer_name and buffer_name:len() > 0 then
     git_root = git_repo_root_command()
 
-    return string.sub(buffer_name, git_root:len() + 2)
+    return string.sub(buffer_name, git_root:len() + 1)
   else
     return nil
   end
