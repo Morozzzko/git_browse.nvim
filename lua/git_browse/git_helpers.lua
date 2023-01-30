@@ -12,6 +12,10 @@ M.parse_git_branch = function(raw_branch_data)
   }
 end
 
+M.branch_name_to_open = function(current_branch_data)
+  return current_branch_data.name
+end
+
 M.current_branch_info = function(git_branch_command)
   local git_branch_output = git_branch_command()
 

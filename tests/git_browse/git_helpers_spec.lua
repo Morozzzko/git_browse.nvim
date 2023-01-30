@@ -58,6 +58,19 @@ describe("parse_git_branch", function()
   end)
 end)
 
+describe("branch_name_to_open", function()
+  current_branch = {
+    name = "main",
+    type = "commit",
+    push_location = "origin/main",
+    upstream = "origin/main",
+    current = true,
+  }
+  it("returns current branch upstream", function()
+    assert.are.same("main", git_helpers.branch_name_to_open(current_branch))
+  end)
+end)
+
 describe("current_branch", function()
   git_branch_command = function()
     return [[

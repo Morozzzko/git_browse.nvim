@@ -17,10 +17,10 @@ end
 
 M.browse = function(git_branch_command, git_remote_get_url_command, git_repo_root_command)
   local current_branch = git_helpers.current_branch_info(git_branch_command)
-  local branch_to_open = M.branch_to_open(current_branch)
+  local branch_name_to_open = git_helpers.branch_name_to_open(current_branch)
   local remote = git_remote_get_url_command("origin")
   local current_location = location_from_current_buffer(git_repo_root_command)
-  local url = url_builder.build_url(remote, branch_to_open, current_location)
+  local url = url_builder.build_url(remote, branch_name_to_open, current_location)
   return {
     cmd = "open",
     url = url,
