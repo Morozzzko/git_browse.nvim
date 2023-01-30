@@ -13,7 +13,9 @@ M.parse_git_branch = function(raw_branch_data)
 end
 
 M.branch_name_to_open = function(current_branch_data)
-  return current_branch_data.name
+  _origin, path = current_branch.upstream:match('(%w+)/(.*)')
+
+  return path
 end
 
 M.find_openable_branch = function(branches)

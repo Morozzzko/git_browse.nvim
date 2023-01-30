@@ -63,11 +63,11 @@ describe("branch_name_to_open", function()
     name = "main",
     type = "commit",
     push_location = "origin/main",
-    upstream = "origin/main",
+    upstream = "origin/some-main",
     current = true,
   }
-  it("returns current branch upstream", function()
-    assert.are.same("main", git_helpers.branch_name_to_open(current_branch))
+  it("returns current branch upstream without the origin/ part", function()
+    assert.are.same("some-main", git_helpers.branch_name_to_open(current_branch))
   end)
 end)
 
