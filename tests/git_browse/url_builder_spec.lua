@@ -29,5 +29,19 @@ describe("URL builder", function()
         module.build_url("https://github.com/Morozzzko/git-browse-nvim.git", "main", "README.md", "browse")
       )
     end)
+
+    it("forces browse if path is empty in blame", function()
+      assert.are.same(
+        "https://github.com/Morozzzko/git-browse-nvim/tree/main",
+        module.build_url("https://github.com/Morozzzko/git-browse-nvim.git", "main", nil, "blame")
+      )
+    end)
+
+    it("generates a blame URL from SSH remote, current branch, and path", function()
+      assert.are.same(
+        "https://github.com/Morozzzko/git-browse-nvim/blame/main/README.md",
+        module.build_url("https://github.com/Morozzzko/git-browse-nvim.git", "main", "README.md", "blame")
+      )
+    end)
   end)
 end)
