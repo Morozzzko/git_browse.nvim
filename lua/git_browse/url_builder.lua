@@ -9,7 +9,7 @@ M.build_github_url = function(repo, branch_name, path)
 end
 
 M.build_gitlab_url = function(domain, repo, branch, path)
-  return "TODO" -- noop for now
+  error("GitLab is not implemented at the moment")
 end
 
 M.build_url = function(remote, current_branch_name, path_in_repo)
@@ -22,8 +22,7 @@ M.build_url = function(remote, current_branch_name, path_in_repo)
       return M.build_gitlab_url(domain, repo, current_branch_name, path_in_repo)
     end
   else
-    -- TODO: throw exception
-    return { status = "error parsing remote " .. remote }
+    error("Error parsing remote ".. remote)
   end
 end
 

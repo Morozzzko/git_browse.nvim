@@ -22,7 +22,7 @@ M.find_openable_branch = function(branches)
       return value
     end
   end
-  -- TODO: throw explicit error 
+  error("Could not find a way to open the branch")
 end
 
 M.current_branch_info = function(git_branch_command)
