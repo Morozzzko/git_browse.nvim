@@ -40,7 +40,6 @@ M.current_branch_info = function(git_branch_command)
 
     if parsed_branch.current then
       current_branch = parsed_branch
-      break
     end
   end
 

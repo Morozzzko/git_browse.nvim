@@ -13,9 +13,15 @@ M.config = {
   -- Function which gets the git branch in specific format:
   -- name, push location, upstream, type and whether or not the branch is current
   git_branch_command = function()
-    return shell_exec(
+    orig_head_output = shell_exec(
       'git branch --format "%(refname:short):%(push:short):%(upstream:short):%(objecttype):%(HEAD)" --contains ORIG_HEAD'
     )
+
+    if orig_head_output:len() == 0 then -- there was an error
+      return shell_exec('git branch --format "%(refname:short):%(push:short):%(upstream:short):%(objecttype):%(HEAD)"')
+    else
+      return orig_head_output
+    end
   end,
   git_remote_get_url_command = function(remote_name)
     return shell_exec("git remote get-url " .. remote_name)
