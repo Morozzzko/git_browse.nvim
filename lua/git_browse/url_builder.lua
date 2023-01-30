@@ -4,9 +4,9 @@ M.build_github_url = function(repo, branch_name, path, url_type)
   if path then
     if url_type == "browse" then
       return "https://github.com/" .. repo .. "/blob/" .. branch_name .. "/" .. path
-    elseif url_type == "blame" then 
+    elseif url_type == "blame" then
       return "https://github.com/" .. repo .. "/blame/" .. branch_name .. "/" .. path
-    else 
+    else
       error("Unknown URL type" .. browse)
     end
   else
@@ -20,9 +20,9 @@ M.build_gitlab_url = function(domain, repo, branch_name, path, url_type)
   if path then
     if url_type == "browse" then
       return repo_url .. "/-/blob/" .. branch_name .. "/" .. path
-    elseif url_type == "blame" then 
-      return repo_url ..  "/-/blame/" .. branch_name .. "/" .. path
-    else 
+    elseif url_type == "blame" then
+      return repo_url .. "/-/blame/" .. branch_name .. "/" .. path
+    else
       error("Unknown URL type" .. browse)
     end
   else
@@ -40,7 +40,7 @@ M.build_url = function(remote, current_branch_name, path_in_repo, url_type)
       return M.build_gitlab_url(domain, repo, current_branch_name, path_in_repo, url_type)
     end
   else
-    error("Error parsing remote ".. remote)
+    error("Error parsing remote " .. remote)
   end
 end
 

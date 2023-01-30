@@ -13,7 +13,7 @@ M.parse_git_branch = function(raw_branch_data)
 end
 
 M.branch_name_to_open = function(current_branch_data)
-  _origin, path = current_branch_data.upstream:match('(%w+)/(.*)')
+  _origin, path = current_branch_data.upstream:match("(%w+)/(.*)")
 
   return path
 end
@@ -44,7 +44,7 @@ M.current_branch_info = function(git_branch_command)
     end
   end
 
-  if current_branch and current_branch.upstream:len() > 0 then 
+  if current_branch and current_branch.upstream:len() > 0 then
     return current_branch
   else
     return M.find_openable_branch(branches)
