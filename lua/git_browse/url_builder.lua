@@ -15,16 +15,18 @@ M.build_github_url = function(repo, branch_name, path, url_type)
 end
 
 M.build_gitlab_url = function(domain, repo, branch_name, path, url_type)
+  repo_url = "https://" .. domain:gsub(":", "/") .. "/" .. repo
+
   if path then
     if url_type == "browse" then
-      return "https://gitlab.com/" .. repo .. "/-/blob/" .. branch_name .. "/" .. path
+      return repo_url .. "/-/blob/" .. branch_name .. "/" .. path
     elseif url_type == "blame" then 
-      return "https://gitlab.com/" .. repo .. "/-/blame/" .. branch_name .. "/" .. path
+      return repo_url ..  "/-/blame/" .. branch_name .. "/" .. path
     else 
       error("Unknown URL type" .. browse)
     end
   else
-    return "https://gitlab.com/" .. repo .. "/-/tree/" .. branch_name
+    return repo_url .. "/-/tree/" .. branch_name
   end
 end
 
