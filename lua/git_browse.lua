@@ -50,9 +50,10 @@ M.browse_line = function()
 end
 
 M.browse_selected = function()
-  data =
-    module.browse_selected(
-      M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command
+  data = module.browse_selected(
+    M.config.git_branch_command,
+    M.config.git_remote_get_url_command,
+    M.config.git_repo_root_command
   )
   return os.execute(data.cmd .. " " .. data.url)
 end
@@ -69,10 +70,11 @@ M.blame_line = function()
 end
 
 M.blame_selected = function()
-  data =
-    module.blame_selected(
-      M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command
-    )
+  data = module.blame_selected(
+    M.config.git_branch_command,
+    M.config.git_remote_get_url_command,
+    M.config.git_repo_root_command
+  )
   return os.execute(data.cmd .. " " .. data.url)
 end
 
