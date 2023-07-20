@@ -43,8 +43,19 @@ M.browse = function()
   return os.execute(data.cmd .. " " .. data.url)
 end
 
+M.browse_line = function()
+  data = module.browse_line(M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command)
+  return os.execute(data.cmd .. " " .. data.url)
+end
+
+
 M.blame = function()
   data = module.blame(M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command)
+  return os.execute(data.cmd .. " " .. data.url)
+end
+
+M.blame_line = function()
+  data = module.blame_line(M.config.git_branch_command, M.config.git_remote_get_url_command, M.config.git_repo_root_command)
   return os.execute(data.cmd .. " " .. data.url)
 end
 
