@@ -26,8 +26,10 @@ use { "Morozzzko/git_browse.nvim" }
 
 * `:Blame` – open blame
 * `:BlameLine` – open blame for file navigated to cursor's line
+* `:BlameSelected` – open blame for selected lines, works only in visual mode
 * `:Browse` – open tree for directory / blob for file
 * `:BrowseLine` – open tree for directory / blob for file navigated to cursor's line
+* `:BrowseSelected` – open blof for file with selected lines, works only in visual mode
 
 
 ## Things to do 
