@@ -25,7 +25,9 @@ use { "Morozzzko/git_browse.nvim" }
 ## Commands
 
 * `:Blame` – open blame
+* `:BlameLine` – open blame for file navigated to cursor's line
 * `:Browse` – open tree for directory / blob for file
+* `:BrowseLine` – open tree for directory / blob for file navigated to cursor's line
 
 
 ## Things to do 
