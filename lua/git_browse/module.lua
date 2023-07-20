@@ -40,6 +40,25 @@ M.browse_line = function(git_branch_command, git_remote_get_url_command, git_rep
   }
 end
 
+M.browse_selected = function(git_branch_command, git_remote_get_url_command, git_repo_root_command)
+  local current_branch = git_helpers.current_branch_info(git_branch_command)
+  local branch_name_to_open = git_helpers.branch_name_to_open(current_branch)
+  local remote = git_remote_get_url_command("origin")
+  local current_location = location_from_current_buffer(git_repo_root_command)
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  local url = url_builder.build_url(
+    remote,
+    branch_name_to_open,
+    current_location .. "#L" .. start_line .. ".." .. "L" .. end_line,
+    "browse"
+  )
+  return {
+    cmd = "open",
+    url = url,
+  }
+end
+
 M.blame = function(git_branch_command, git_remote_get_url_command, git_repo_root_command)
   local current_branch = git_helpers.current_branch_info(git_branch_command)
   local branch_name_to_open = git_helpers.branch_name_to_open(current_branch)
@@ -59,6 +78,25 @@ M.blame_line = function(git_branch_command, git_remote_get_url_command, git_repo
   local current_location = location_from_current_buffer(git_repo_root_command)
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   local url = url_builder.build_url(remote, branch_name_to_open, current_location .. "#L" .. current_line, "blame")
+  return {
+    cmd = "open",
+    url = url,
+  }
+end
+
+M.blame_selected = function(git_branch_command, git_remote_get_url_command, git_repo_root_command)
+  local current_branch = git_helpers.current_branch_info(git_branch_command)
+  local branch_name_to_open = git_helpers.branch_name_to_open(current_branch)
+  local remote = git_remote_get_url_command("origin")
+  local current_location = location_from_current_buffer(git_repo_root_command)
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  local url = url_builder.build_url(
+    remote,
+    branch_name_to_open,
+    current_location .. "#L" .. start_line .. ".." .. "L" .. end_line,
+    "blame"
+  )
   return {
     cmd = "open",
     url = url,
