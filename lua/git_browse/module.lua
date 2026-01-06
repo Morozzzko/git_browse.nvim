@@ -45,12 +45,12 @@ M.browse_selected = function(git_branch_command, git_remote_get_url_command, git
   local branch_name_to_open = git_helpers.branch_name_to_open(current_branch)
   local remote = git_remote_get_url_command("origin")
   local current_location = location_from_current_buffer(git_repo_root_command)
-  local start_line = vim.fn.line("v")
-  local end_line = vim.fn.line(".")
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
   local url = url_builder.build_url(
     remote,
     branch_name_to_open,
-    current_location .. "#L" .. start_line .. ".." .. "L" .. end_line,
+    current_location .. "#L" .. start_line .. "-" .. "L" .. end_line,
     "browse"
   )
   return {
